@@ -1,7 +1,7 @@
 a{
   text-decoration: none;
   color: white;
-  display: inline-block;
+  /* display: inline-block; */
   position: relative;
 
 }
@@ -30,7 +30,7 @@ body{
 }
 .dark-grey-div{
   position: absolute;
-  top: 62%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -52,7 +52,7 @@ hr{
   color: white;
   border: 0;
   border-top: 1px solid;
-
+  margin-bottom: 0;
 }
 .health{
   text-align: center;
@@ -89,13 +89,18 @@ ul{
 }
 .nav-ul{
   padding-top: 10px;
-
   margin-left: 2.8%;
   padding-bottom: 10px;
 }
-.nav-login{
 
-  padding-top: 75px;
+.log{
+  position: relative;
+  bottom: 1px;
+  padding-top: 85px;
+}
+.nav-login li{
+  text-transform: uppercase;
+  font-size: 0.938rem;
 }
 
 .w-font{
@@ -114,6 +119,11 @@ ul{
     text-align: center;
 
 }
+label input{
+  display: none;
+}
+
+
 
 /* Media Query */
 
@@ -129,4 +139,127 @@ ul{
     transform: translate(-50%, -50%);
     text-align: justify;
   }
+
+  /* Hamburger dropdown */
+  /* This will expand the white area to the entire body-gradually */
+  hr{
+    margin-bottom: 8px;
+  }
+  label .menu{
+    position: absolute;
+    left: 7.5%;
+
+    z-index: 100;
+
+    /* Width and height will decide the white of the circle */
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50% 20% 50% 20%;
+    transition: 0.5s ease-in-out;
+    /* Box shadow will merge in with the background so that it would appear consistent. */
+    box-shadow: 0 0 0 0 #fff, 0 0 0 0 #fff;
+    cursor: pointer;
+  }
+
+  /* This will design the hamburger menu */
+  label .hamburger{
+    position: absolute;
+    /* top: 135px; */
+    /* left: 50px; */
+
+    /* This is to center the hamburger menu inside the circle */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 1px;
+
+    background-color: #000;
+    display: block;
+    transform-origin: center;
+
+    /* This transition is to animate the hamburger menu to a cross gradually */
+    transition: 0.5s ease-in-out;
+  }
+
+  label .hamburger::after, .hamburger::before{
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+  }
+  label .hamburger::before{
+    top: -5px;
+  }
+  label .hamburger::after{
+    bottom: -5px;
+  }
+
+  label input:checked + .menu{
+    /* The box shadow will gradually cover the entire viewport */
+    box-shadow: 0 0 0 100vw #fff, 0 0 0 100vh  #fff;
+    /* border-radius: 0; */
+  }
+
+  /* Since, the :after and :before hamburger bars rotates to a 90 deg,
+  transform: rotate(45deg) will further rotate it to a 45 deg. */
+  label input:checked + .menu .hamburger{
+    transform: rotate(45deg);
+
+  }
+
+
+  /* This will rotate the upper bar of the hamburger menu to 90 deg */
+   label input:checked + .menu .hamburger:after{
+    transform: rotate(90deg);
+    bottom: 0;
+  }
+
+  /* This will rotate the bottom part of the hamburger menu to 90 deg */
+  label input:checked + .menu .hamburger::before{
+    transform: rotate(90deg);
+    top: 0;
+  }
+
+  /* The input:checked will keep the  */
+  label input:checked + .menu + ul{
+    opacity: 1;
+  }
+  label ul{
+    z-index: 200;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: 0.25s 0s ease-in-out;
+  }
+
+  /* This will design the list items */
+  label a{
+     margin-bottom: 1em;
+     font-size: 18px;
+     display: block;
+     color: #000;
+     text-decoration: none;
+     text-transform: uppercase;
+     letter-spacing: 2px;
+     justify-content: center;
+     padding: 12px 36px;
+     transition: 0.5s ease-in-out;
+  }
+  label a:hover{
+    background-color:  #232222;
+    opacity: 0.7;
+    color: #fff;
+    letter-spacing: 3px;
+  }
+  label a:hover::after{
+    display: none;
+  }
+
 }
